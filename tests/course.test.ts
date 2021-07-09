@@ -45,8 +45,6 @@ describe('CourseTest', () => {
 
   it('course.students',() => {
     let course =  Course.fromId(1);
-    console.log("XXXXX");
-    console.log(course.students());
   });
 });
 

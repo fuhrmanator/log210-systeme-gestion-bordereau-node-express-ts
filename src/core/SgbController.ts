@@ -59,18 +59,18 @@ export class SgbController {
 
 	
 /** teacher will assigne note to a student work */
-	public note(token:string, student_id:number, course_id:number, type:string, type_id:number, note:number) {
+	public note(token: string, student_id: number, course_id: number, type: string, type_id: number, note: number) {
 		let teacher = Teacher.fromToken(token); // will generate an error if token is invalid
 		if (!teacher.giveCourse(course_id))
-			throw new Error("This teacher do not give this course")
+			throw new Error("This teacher does not teach this course")
 
-			let student = Student.fromId(student_id)
-			if (!student.followCourse(course_id))
-			throw new Error("This student to not follow this course")
+		let student = Student.fromId(student_id)
+		if (!student.followCourse(course_id))
+			throw new Error("This student is not enrolled in this course")
 
-			this.notes.set(student_id,course_id, type, type_id, note);
+		this.notes.set(student_id, course_id, type, type_id, note);
 	}
-	
+
 
 	public studentNote(token:string, course:number, type:string, type_id:number, note:number) {
 		let student = Student.fromToken(token); // will generate an error if token is invalid
